@@ -1129,18 +1129,19 @@
           <p>A book about resiliency and agency, for the tiniest readers.</p>
         </div>
       </div>
-
+<form onsubmit="handleSubscribe(event)" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="bb67c2c3-52d6-4b0d-a677-b22caa35297a">
       <div class="collab-form reveal">
         <div class="form-title">Express Your Interest</div>
         <p class="form-subtitle">Share a little about yourself and your work. We'd love to see what you create.</p>
         <div class="form-row">
           <div class="form-group">
             <label>Your Name</label>
-            <input type="text" placeholder="Full name" />
+            <input type="text" placeholder="Full name" required/>
           </div>
           <div class="form-group">
             <label>Email</label>
-            <input type="email" placeholder="hello@yourstudio.com" />
+            <input type="email" placeholder="hello@yourstudio.com" required/>
           </div>
         </div>
         <div class="form-group">
@@ -1149,14 +1150,15 @@
         </div>
         <div class="form-group">
           <label>Your Style in a Few Words</label>
-          <input type="text" placeholder="e.g. Soft watercolor, earthy tones, expressive characters…" />
+          <input type="text" placeholder="e.g. Soft watercolor, earthy tones, expressive characters…" required/>
         </div>
         <div class="form-group">
           <label>Tell Us About You</label>
           <textarea rows="4" placeholder="What draws you to children's illustration? What does your process look like?"></textarea>
         </div>
-        <button class="btn-form">✦ Submit My Interest</button>
+        <button type="submit" class="btn-form">✦ Submit My Interest</button>
       </div>
+      </form>
     </div>
   </section>
 
@@ -1165,7 +1167,8 @@
     <p class="section-label">✦ Stay close</p>
     <h2 class="section-title">Follow the journey</h2>
     <p class="section-sub">Get occasional updates as The Great Hello moves from manuscript to bookshelf — milestones, behind-the-scenes, and the moments that matter.</p>
-    <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+    <form class="newsletter-form" onsubmit="handleSubscribe(event)" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="0c6f40ea-1641-478f-b8e5-2996603a3273">
       <input type="email" placeholder="your@email.com" required />
       <button type="submit">Keep me posted →</button>
     </form>
