@@ -67,6 +67,11 @@
       color: var(--midnight);
       letter-spacing: -0.02em;
     }
+    
+    .nav-logo a {
+      text-decoration: none;
+      color: inherit;
+    }
 
     .nav-logo span {
       color: var(--amber);
@@ -985,7 +990,7 @@
 
   <!-- NAV -->
   <nav>
-    <div class="nav-logo">The Great <span>Hello</span> Studio</div>
+    <div class="nav-logo"><a href="#home">The Great <span>Hello</span> Studio</a></div>
     <ul>
       <li><a href="#about">Our Story</a></li>
       <li><a href="#journey">Journey</a></li>
@@ -995,7 +1000,7 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="hero-text">
       <div class="eyebrow">A Children's Book Studio</div>
       <h1>Every child<br>deserves a<br><em>great hello</em></h1>
@@ -1110,7 +1115,7 @@
     <div class="illustrator-inner">
       <p class="section-label" style="color: var(--sage-dark);">✦ For Illustrators</p>
       <h2 class="section-title">Your art could bring<br><em>this story to life</em></h2>
-      <p class="section-sub">The Great Hello is a lyrical, warmly cosmic picture book for ages 0–5. We're looking for an illustrator whose visual sensibility honors the wonders of early childhood.</p>
+      <p class="section-sub">The Great Hello is a lyrical, warmly cosmic picture book for ages 0–5. We're looking for an illustrator whose visual sensibility honors the wonder of early childhood.</p>
 
       <div class="collab-values reveal">
         <div class="collab-val">
@@ -1227,6 +1232,7 @@
     const json = await res.json();
 
     if (json.success) {
+      e.target.reset();
       btn.textContent = '✦ You\'re on the list!';
       btn.style.background = '#4A8B68';
       input.value = '';
@@ -1263,6 +1269,7 @@
     const json = await res.json();
 
     if (json.success) {
+      this.reset();
       btn.textContent = '✦ Received — we\'ll be in touch!';
       btn.style.background = '#4A8B68';
     } else {
