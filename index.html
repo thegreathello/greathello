@@ -827,7 +827,7 @@
 
 
 
-    .updates .section-title { color: midnight; }
+    .updates .section-title { color: var(--midnight); }
     .updates .section-sub { color: var(--soft); }
 
     .newsletter-form {
@@ -855,7 +855,7 @@
     }
 
     .newsletter-form input::placeholder { color: rgba(107,124,141,0.5); }
-    .newsletter-form input:focus { border-color: var(--midgnight1); }
+    .newsletter-form input:focus { border-color: var(--midnight1); }
 
     .newsletter-form button {
       background: var(--midnight);
@@ -879,7 +879,7 @@
 
     .update-promise {
       font-size: 0.78rem;
-      color: midnight1;
+      color: var(--midnight1);
       margin-top: 1rem;
     }
 
@@ -1129,32 +1129,32 @@
           <p>A book about resiliency and agency, for the tiniest readers.</p>
         </div>
       </div>
-<form onsubmit="handleSubscribe(event)" action="https://api.web3forms.com/submit" method="POST">
+<form>
   <input type="hidden" name="access_key" value="bb67c2c3-52d6-4b0d-a677-b22caa35297a">
       <div class="collab-form reveal">
         <div class="form-title">Express Your Interest</div>
         <p class="form-subtitle">Share a little about yourself and your work. We'd love to see what you create.</p>
         <div class="form-row">
           <div class="form-group">
-            <label>Your Name</label>
-            <input type="text" placeholder="Full name" required/>
+            <label for="name">Your Name</label>
+            <input type="text" name="name" placeholder="Full name" required>
           </div>
           <div class="form-group">
-            <label>Email</label>
-            <input type="email" placeholder="hello@yourstudio.com" required/>
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="hello@yourstudio.com" required>
           </div>
         </div>
         <div class="form-group">
-          <label>Portfolio or Instagram</label>
-          <input type="url" placeholder="https://yourportfolio.com" />
+          <label for="portfolio">Portfolio or Instagram</label>
+          <input type="text" name="portfolio" placeholder="https://yourportfolio.com" required>
         </div>
         <div class="form-group">
-          <label>Your Style in a Few Words</label>
-          <input type="text" placeholder="e.g. Soft watercolor, earthy tones, expressive characters…" required/>
+          <label for="style">Your Style in a Few Words</label>
+          <input type="text" name="style" placeholder="e.g. Soft watercolor, earthy tones, expressive characters…" required>
         </div>
         <div class="form-group">
-          <label>Tell Us About You</label>
-          <textarea rows="4" placeholder="What draws you to children's illustration? What does your process look like?"></textarea>
+          <label for="about">Tell Us About You</label>
+          <textarea rows="4" name="about" placeholder="What draws you to children's illustration? What does your process look like?"></textarea>
         </div>
         <button type="submit" class="btn-form">✦ Submit My Interest</button>
       </div>
@@ -1167,9 +1167,9 @@
     <p class="section-label">✦ Stay close</p>
     <h2 class="section-title">Follow the journey</h2>
     <p class="section-sub">Get occasional updates as The Great Hello moves from manuscript to bookshelf — milestones, behind-the-scenes, and the moments that matter.</p>
-    <form class="newsletter-form" onsubmit="handleSubscribe(event)" action="https://api.web3forms.com/submit" method="POST">
+    <form class="newsletter-form" onsubmit="handleSubscribe(event)">
   <input type="hidden" name="access_key" value="0c6f40ea-1641-478f-b8e5-2996603a3273">
-      <input type="email" placeholder="your@email.com" required />
+      <input type="email" name="email2" placeholder="your@email.com" required>
       <button type="submit">Keep me posted →</button>
     </form>
     <p class="update-promise">No noise. Just the real story, when there's something worth sharing.</p>
@@ -1182,7 +1182,7 @@
       <li><a href="#about">The Book</a></li>
       <li><a href="#journey">Journey</a></li>
       <li><a href="#illustrators">Collaborate</a></li>
-      <li><a href="mailto:hello@greathello.com">Contact</a></li>
+      <li><a href="mailto:ting@greathello.com">Contact</a></li>
     </ul>
     <div class="footer-copy">© 2025 The Great Hello Studio · greathello.com</div>
   </footer>
@@ -1208,25 +1208,75 @@
     });
 
     // Newsletter
-    function handleSubscribe(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      const input = e.target.querySelector('input');
+ async function handleSubscribe(e) {
+  e.preventDefault();
+
+  const btn = e.target.querySelector('button');
+  const input = e.target.querySelector('input[type="email"]');
+  const data = new FormData(e.target);
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: data,
+    });
+
+    const json = await res.json();
+
+    if (json.success) {
       btn.textContent = '✦ You\'re on the list!';
       btn.style.background = '#4A8B68';
       input.value = '';
       input.disabled = true;
-      btn.disabled = true;
+    } else {
+      btn.textContent = '✗ Something went wrong. Try again.';
+      btn.style.background = '#c0392b';
+      btn.disabled = false;
     }
 
+  } catch (err) {
+    btn.textContent = '✗ Network error. Try again.';
+    btn.style.background = '#c0392b';
+    btn.disabled = false;
+  }
+}
+
     // Form submit
-    document.querySelector('.btn-form')?.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.textContent = '✦ Received — we\'ll be in touch!';
-      this.style.background = '#4A8B68';
-      this.disabled = true;
+  document.querySelector('.collab-form')?.closest('form')?.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn = this.querySelector('.btn-form');
+  const data = new FormData(this);
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: data,
     });
 
+    const json = await res.json();
+
+    if (json.success) {
+      btn.textContent = '✦ Received — we\'ll be in touch!';
+      btn.style.background = '#4A8B68';
+    } else {
+      btn.textContent = '✗ Something went wrong. Try again.';
+      btn.style.background = '#c0392b';
+      btn.disabled = false;
+    }
+
+  } catch (err) {
+    btn.textContent = '✗ Network error. Try again.';
+    btn.style.background = '#c0392b';
+    btn.disabled = false;
+  }
+});
     // Smooth nav highlight
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('nav ul li a:not(.nav-cta)');
