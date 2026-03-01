@@ -762,9 +762,18 @@
               <input type="email" name="email" placeholder="hello@yourstudio.com" required/>
             </div>
           </div>
-          <div class="form-group">
+          <!--div class="form-group">
             <label>Your Primary Craft</label>
             <input type="text" name="craft" placeholder="e.g. Children's Book Author, Fine Art Illustrator, Self-Publisher" required/>
+          </div-->
+          <div class="form-group">
+            <label>Your Primary Craft</label>
+            <select name="hosting" required>
+              <option value="" disabled selected>Select one</option>
+              <option value="author">Book Author</option>
+              <option value="artist">Fine Art Illustrator</option>
+              <option value="publisher">Self-Publisher</option>
+            </select>
           </div>
           <div class="form-group">
             <label>Current Web Presence</label>
