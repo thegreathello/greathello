@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Great Hello Studio — Where Every Child Blossoms</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23FFD166'>✦</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dawn: #FFF3E0;
+      --sky: #E8F4F8;
+      --gold: #F4A535;
+      --amber: #E07B39;
+      --blush: #F2C4A0;
+      --sage: #8DBF9F;
+      --sage-dark: #4A8B68;
+      --midnight: #1B3A6B;
+      --ink: #2C3E50;
+      --soft: #6B7C8D;
+      --cream: #FDFAF5;
+      --star: #FFD166;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+      will-change: transform;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(253, 250, 245, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(244, 165, 53, 0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--midnight);
+      letter-spacing: -0.02em;
+    }
+    
+    .nav-logo a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav-logo span {
+      color: var(--amber);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--soft);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    nav ul li a:hover { color: var(--amber); }
+
+    .nav-cta {
+      background: var(--midnight) !important;
+      color: var(--cream) !important;
+      padding: 0.55rem 1.4rem !important;
+      border-radius: 50px !important;
+      font-weight: 500 !important;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--amber) !important;
+      color: var(--cream) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 3rem 5rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Layered background */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: 65vw;
+      height: 65vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(244,165,53,0.12) 0%, rgba(244,165,53,0) 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -5%;
+      left: -10%;
+      width: 50vw;
+      height: 50vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(141,191,159,0.15) 0%, rgba(141,191,159,0) 70%);
+      pointer-events: none;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+      margin-bottom: 1.5rem;
+      background: rgba(141,191,159,0.15);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      border: 1px solid rgba(141,191,159,0.3);
+    }
+
+    .eyebrow::before {
+      content: '✦';
+      font-size: 0.7rem;
+      color: var(--sage-dark);
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      font-weight: 600;
+      line-height: 1.05;
+      color: var(--midnight);
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--amber);
+      font-weight: 300;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--soft);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--amber);
+      color: white;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s;
+      box-shadow: 0 4px 20px rgba(224,123,57,0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--midnight);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(28,43,58,0.25);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--midnight);
+      padding: 0.9rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 2px solid var(--gold);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      color: var(--amber);
+      gap: 0.8rem;
+    }
+
+    /* ── BOOK VISUAL ── */
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+
+    .book-container {
+      position: relative;
+      width: 340px;
+      height: 380px;
+    }
+
+    /* Floating shapes */
+    .float-shape {
+      position: absolute;
+      border-radius: 50%;
+      animation: float 4s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    .shape-1 {
+      width: 80px; height: 80px;
+      background: radial-gradient(circle, var(--star), var(--gold));
+      top: -20px; right: 20px;
+      animation-delay: 0s;
+      opacity: 0.85;
+    }
+
+    .shape-2 {
+      width: 50px; height: 50px;
+      background: radial-gradient(circle, var(--sage), var(--sage-dark));
+      bottom: 30px; left: -15px;
+      animation-delay: 1.5s;
+      opacity: 0.7;
+    }
+
+    .shape-3 {
+      width: 35px; height: 35px;
+      background: radial-gradient(circle, var(--blush), var(--amber));
+      top: 120px; right: -20px;
+      animation-delay: 0.8s;
+      opacity: 0.75;
+    }
+
+    /* Book */
+    .book {
+      position: relative;
+      width: 280px;
+      height: 350px;
+      margin: 0 auto;
+      perspective: 1200px;
+    }
+
+    .book-cover {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, var(--midnight) 0%, #2A3F54 100%);
+      border-radius: 8px 18px 18px 8px;
+      box-shadow:
+        -6px 6px 0 rgba(28,43,58,0.4),
+        -12px 12px 0 rgba(28,43,58,0.2),
+        -18px 18px 30px rgba(28,43,58,0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .book-cover:hover {
+      transform: rotate(1deg) scale(1.02);
+      box-shadow:
+        -8px 8px 0 rgba(28,43,58,0.4),
+        -16px 16px 0 rgba(28,43,58,0.2),
+        -24px 24px 40px rgba(28,43,58,0.2);
+    }
+
+    /* Spine illusion */
+    .book-cover::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 18px;
+      background: linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0));
+      border-radius: 8px 0 0 8px;
+    }
+
+    /* Stars on cover */
+    .book-cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+   
+    }
+
+    .cover-star {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--star);
+      filter: drop-shadow(0 0 12px rgba(255,209,102,0.8));
+      animation: pulse-glow 3s ease-in-out infinite;
+      will-change: filter;
+    }
+
+    .cover-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: white;
+      text-align: center;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .cover-title .cover-the {
+      font-size: 1rem;
+      font-weight: 300;
+      font-style: italic;
+      display: block;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+    }
+
+    .cover-author {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 1.5rem;
+    }
+
+    .cover-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--star);
+      color: var(--midnight);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+    }
+
+    /* ── PILLARS ── */
+    .pillars {
+      padding: 6rem 3rem;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillars::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      text-decoration: none;
+    }
+
+    .pillars .section-title { color: white; }
+
+    .section-sub {
+      text-align: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 1rem;
+      max-width: 520px;
+      margin: 0 auto 4rem;
+      line-height: 1.7;
+      font-weight: 300;
+      text-decoration: none;
+    }
+
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pillar-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+      border-radius: 20px;
+    }
+
+    .pillar-card:nth-child(1)::before { background: radial-gradient(circle at 50% 0%, rgba(244,165,53,0.1), transparent 60%); }
+    .pillar-card:nth-child(2)::before { background: radial-gradient(circle at 50% 0%, rgba(141,191,159,0.1), transparent 60%); }
+    .pillar-card:nth-child(3)::before { background: radial-gradient(circle at 50% 0%, rgba(255,209,102,0.1), transparent 60%); }
+
+    .pillar-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-4px); }
+    .pillar-card:hover::before { opacity: 1; }
+
+    .pillar-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.2rem;
+      display: block;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    }
+
+    .pillar-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .pillar-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── ABOUT / JOURNEY ── */
+    .about {
+      padding: 7rem 3rem;
+      background: var(--cream);
+      position: relative;
+    }
+
+    .about-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-art {
+      position: relative;
+    }
+
+    .author-block {
+      background: linear-gradient(135deg, var(--dawn), var(--blush));
+      border-radius: 28px;
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .author-block::after {
+      content: '✦';
+      position: absolute;
+      bottom: -1rem;
+      right: 1rem;
+      font-size: 7rem;
+      color: rgba(244,165,53,0.1);
+      line-height: 1;
+    }
+
+    .author-avatar {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--amber), var(--gold));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 24px rgba(224,123,57,0.3);
+    }
+
+    .author-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--midnight);
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.02em;
+    }
+
+    .author-role {
+      font-size: 0.82rem;
+      color: var(--soft);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .author-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--ink);
+      line-height: 1.6;
+      border-left: 3px solid var(--amber);
+      padding-left: 1.2rem;
+    }
+/* ── INLINE TEXT LINKS ── */
+.inline-link {
+  color: var(--amber);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.inline-link:hover {
+  color: var(--midnight);
+  border-color: var(--midnight);
+}
+    
+    /* Journey timeline */
+    .journey-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .about-text h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 600;
+      color: var(--midnight);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text h2 em {
+      font-style: italic;
+      color: var(--amber);
+      font-weight: 300;
+    }
+
+    .about-text p {
+      font-size: 0.98rem;
+      color: var(--soft);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+
+    .milestones {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .milestone {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      position: relative;
+    }
+
+    .milestone:last-child { border-bottom: none; }
+
+    .m-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .m-dot.done { background: var(--midnight); color: white; }
+    .m-dot.active { background: var(--amber); color: white; box-shadow: 0 0 0 4px rgba(224,123,57,0.2); }
+    .m-dot.next { background: rgba(0,0,0,0.06); color: var(--soft); }
+
+    .m-text strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--midnight);
+      margin-bottom: 0.2rem;
+    }
+
+    .m-text span {
+      font-size: 0.82rem;
+      color: var(--soft);
+      font-weight: 300;
+    }
+
+    /* ── ILLUSTRATOR CTA ── */
+    .illustrator-section {
+      padding: 7rem 3rem;
+      background: linear-gradient(160deg, #F9F2E8 0%, #EDF5F0 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .illustrator-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(141,191,159,0.5), transparent);
+    }
+
+    .illustrator-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .illustrator-inner .section-title {
+      color: var(--midnight);
+      margin-bottom: 1rem;
+    }
+
+    .illustrator-inner .section-sub {
+      color: var(--soft);
+    }
+
+    .collab-values {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin: 3rem 0;
+    }
+
+    .collab-val {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-decoration: none;
+    }
+
+    .collab-val:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+    .collab-val .icon { font-size: 1.8rem; margin-bottom: 0.7rem; display: block; }
+    .collab-val strong { font-size: 0.9rem; font-weight: 600; color: var(--midnight); display: block; margin-bottom: 0.3rem; }
+    .collab-val p { font-size: 0.8rem; color: var(--soft); line-height: 1.5; font-weight: 300; }
+
+    /* Form */
+    .collab-form {
+      background: white;
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      text-align: left;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .form-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--midnight);
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+    }
+
+    .form-subtitle {
+      font-size: 0.88rem;
+      color: var(--soft);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--midnight);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      color: var(--ink);
+      background: var(--cream);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(244,165,53,0.12);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(107,124,141,0.5);
+    }
+
+    .btn-form {
+      width: 100%;
+      background: var(--midnight);
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s;
+      letter-spacing: 0.01em;
+      margin-top: 0.5rem;
+    }
+
+    .btn-form:hover {
+      background: var(--amber);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(224,123,57,0.3);
+    }
+
+    /* ── NEWSLETTER / UPDATES ── */
+    .updates {
+      padding: 6rem 3rem;
+      background: rgba(255,209,102,0.4);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+
+    .updates .section-title { color: var(--midnight); }
+    .updates .section-sub { color: var(--soft); }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 440px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+ 
+    .newsletter-form input {
+      flex: 1;
+      min-width: 220px;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      background: rgba(255,255,255,0.07);
+      border-radius: 50px;
+      padding: 0.85rem 1.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--amber);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .newsletter-form input::placeholder { color: rgba(107,124,141,0.5); }
+    .newsletter-form input:focus { border-color: var(--ink); }
+
+    .newsletter-form button {
+      background: var(--midnight);
+      color: white;
+      border: none;
+      padding: 0.85rem 1.8rem;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s;
+      white-space: nowrap;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--amber);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .update-promise {
+      font-size: 0.78rem;
+      color: var(--ink);
+      margin-top: 1rem;
+    }
+
+    /* ── FORM SECTIONS & CHECKBOXES ── */
+.form-section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin: 1.8rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(224,123,57,0.2);
+}
+
+.label-note {
+  font-weight: 300;
+  font-size: 0.75rem;
+  color: var(--soft);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--ink);
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--amber);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+    
+    /* ── FOOTER ── */
+    footer {
+      background: #2C3E50;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+.footer-logo-link {
+  text-decoration: none;
+}
+    .footer-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer-logo span { color: var(--amber); }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.82rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.2);
+    }
+  /* ── SOCIAL ICONS ── */
+.social-links {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: all 0.25s;
+  flex-shrink: 0;
+}
+
+.social-link svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.social-link:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(255,209,102,0.08);
+  transform: translateY(-2px);
+}
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 12px rgba(255,209,102,0.8)); }
+      50% { filter: drop-shadow(0 0 24px rgba(255,209,102,1)) drop-shadow(0 0 40px rgba(255,209,102,0.4)); }
+    }
+
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 7rem 2rem 4rem;
+        gap: 3rem;
+      }
+      .hero-desc { margin: 0 auto 2.5rem; }
+      .hero-actions { justify-content: center; }
+      .pillar-grid { grid-template-columns: 1fr; max-width: 380px; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .collab-values { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+      .hero-visual { order: -1; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero { padding: 6rem 1.5rem 3rem; }
+      .pillars, .about, .illustrator-section, .updates { padding: 4rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo"><a href="#">The Great <span>Hello</span> Studio</a></div>
+    <ul>
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#creators">For Creators</a></li>
+      <li><a href="#updates" class="nav-cta">Stay Updated</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <div class="eyebrow">A Children's Book Studio</div>
+      <h1>Every child<br>deserves a<br><em>great hello</em></h1>
+      <p class="hero-desc">
+        Introducing toddlers to the profound ideas of belonging, resilience, and personal agency — one beautiful page at a time. A self-publishing journey, now beginning.
+      </p>
+      <div class="hero-actions">
+        <a href="#about" class="btn-primary">✦ Discover the Book</a>
+        <a href="webdesign.html" class="btn-secondary">Are you a creator? →</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="book-container">
+        <div class="float-shape shape-1"></div>
+        <div class="float-shape shape-2"></div>
+        <div class="float-shape shape-3"></div>
+        <div class="book">
+          <div class="book-cover">
+            <div class="cover-star">✦</div>
+            <div class="cover-title">
+              <span class="cover-the">The</span>
+              Great<br>Hello
+            </div>
+            <div class="cover-author">Ting Zhang</div>
+            <div class="cover-badge">Coming Soon</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="pillars" id="about">
+    <p class="section-label">✦ Our Mission</p>
+    <h2 class="section-title">Three ideas.<br>A lifetime of empowerment.</h2>
+    <p class="section-sub">The Great Hello Studio believes the earliest stories shape who we become. We write for toddlers, but we plant seeds that grow for a lifetime.</p>
+    <div class="pillar-grid reveal">
+      <div class="pillar-card">
+        <span class="pillar-icon">🌍</span>
+        <div class="pillar-name">Belonging</div>
+        <p class="pillar-desc">Every child arrives in a world that has been waiting for them. We want them to feel that — fully and completely — from the very first page.</p>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🌱</span>
+        <div class="pillar-name">Resilience</div>
+        <p class="pillar-desc">Fumbles, tumbles, stumbles — the messy moments are the learning moments. Our stories hold space for trials as the path forward.</p>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">⭐</span>
+        <div class="pillar-name">Personal Agency</div>
+        <p class="pillar-desc">You are the lead star in your own tale. Even at age two, a child can begin to understand that their choices shape their world.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT & JOURNEY -->
+  <section class="about" id="journey">
+    <div class="about-grid">
+      <div class="about-art reveal">
+        <div class="author-block">
+          <div class="author-avatar">👁️</div>
+          <div class="author-name">Ting Zhang, OD, FAAO</div>
+          <div class="author-role">Author · Optometrist · First-time Publisher</div>
+          <blockquote class="author-quote">
+            Ting is an optometrist who has spent her career helping others see the beauty of the world. After navigating her own journey through life’s unexpected challenges, she rediscovered a truth more powerful than 20/20 vision: the internal locus of control.
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="about-text reveal">
+        <p class="journey-label">✦ The self-publishing journey</p>
+        <h2>A story <em>becoming </em><br>a book</h2>
+        <p>The Great Hello started as words on a page — 155 of them — and it's now on its way to becoming a real book in real hands. Follow along as this project moves from manuscript to the shelves.</p>
+        <p>Every step of this journey will be shared here: the search for an illustrator, the design decisions, the printing choices, and the moments in between.</p>
+
+        <div class="milestones">
+          <div class="milestone">
+            <div class="m-dot done">✓</div>
+            <div class="m-text">
+              <strong>Manuscript Complete</strong>
+              <span>155 words, 16 pages, a whole world of meaning</span>
+            </div>
+          </div>
+          <div class="milestone">
+            <div class="m-dot done">✓</div>
+            <div class="m-text">
+              <strong>Illustrator Selected</strong>
+              <span>Found the perfect visual voice for this story: <a href="https://www.instagram.com/selflovedoodlexixi" class="inline-link" target="_blank" rel="noopener">@selflovedoodlexixi</a></span>
+            </div>
+          </div>
+          <div class="milestone">
+            <div class="m-dot active">→</div>
+            <div class="m-text">
+              <strong>Illustration & Design — In Progress</strong>
+              <span>Bringing the book to life, spread by spread</span>
+            </div>
+          </div>
+          <div class="milestone">
+            <div class="m-dot next">○</div>
+            <div class="m-text">
+              <strong>Print & Publishing</strong>
+              <span>IngramSpark · ISBN · Launch</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="illustrator-section" id="creators">
+  <div class="illustrator-inner">
+    <a href="webdesign.html" class="section-label" style="color: var(--sage-dark);">✦ Web Design Services</a>
+    <a href="webdesign.html" class="section-title"><h2>Bring your story<br><em>online</em></h2></a>
+    <a href="webdesign.html" class="section-sub">Are you an author, illustrator, or self-publisher ready to share your vision with the world? The Great Hello Studio crafts elegant, bespoke digital galleries that honor your work. With our unique 'Ownership Model,' you pay once for a premium site that is yours to keep—no recurring hosting fees, no technical overhead, just your legacy, preserved forever.</a>
+    
+    <div class="collab-values reveal">
+      <a href="webdesign.html" class="collab-val">
+      <div>
+        <span class="icon">🎨</span>
+        <strong>Built for Creatives</strong>
+        <p>Websites designed around your art, your voice, and your audience — not a generic template.</p>
+      </div></a>
+      <a href="webdesign.html" class="collab-val">
+      <div>
+        <span class="icon">✨</span>
+        <strong>Modular Pricing</strong>
+        <p>Every module is a one-time fixed fee-pay once, own it forever, no monthly subscriptions ever again.</p>
+        </div></a>
+      <a href="webdesign.html" class="collab-val">
+      <div>
+        <span class="icon">🤝</span>
+        <strong>Asset Ownership</strong>
+        <p>From domain setup to go-live, we guide you through the steps so you own the domain and the files.</p>
+        </div></a>
+    </div>
+ 
+</div>
+</section>
+
+  <!-- UPDATES -->
+  <section class="updates" id="updates">
+    <p class="section-label">✦ Stay close</p>
+    <h2 class="section-title">Follow the journey</h2>
+    <p class="section-sub">Get occasional updates as The Great Hello moves from manuscript to bookshelf — milestones, behind-the-scenes, and the moments that matter.</p>
+    <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+  <input type="hidden" name="access_key" value="0c6f40ea-1641-478f-b8e5-2996603a3273">
+      <input type="email" name="email2" placeholder="your@email.com" required>
+      <button type="submit">Keep me posted →</button>
+    </form>
+    <p class="update-promise">No noise. Just the real story, when there's something worth sharing.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo-link">
+  <div class="footer-logo">The Great <span>Hello</span> Studio</div>
+</a>
+    <ul class="footer-links">
+      <li><a href="#about">The Book</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#creators">For Creators</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#c4b0adaaa384a3b6a1a5b0aca1a8a8abeaa7aba9">Contact</a></li>
+    </ul>
+    <div class="social-links">
+  <!-- Instagram -->
+  <a href="https://instagram.com/the.great.hello" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    </svg>
+  </a>
+  <!-- Facebook -->
+  <a href="https://facebook.com/thegreathello" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </svg>
+  </a>
+</div>
+    <div class="footer-copy">© 2025 The Great Hello Studio · greathello.com</div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Stagger pillar cards
+    document.querySelectorAll('.pillar-card').forEach((card, i) => {
+      card.style.animationDelay = `${i * 0.1}s`;
+    });
+
+    // Newsletter
+ async function handleSubscribe(e) {
+  e.preventDefault();
+
+  const btn = e.target.querySelector('button');
+  const input = e.target.querySelector('input[type="email"]');
+  const data = new FormData(e.target);
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: data,
+    });
+
+    const json = await res.json();
+
+    if (json.success) {
+      e.target.reset();
+      btn.textContent = '✦ You\'re on the list!';
+      btn.style.background = '#4A8B68';
+      input.value = '';
+      input.disabled = true;
+    } else {
+      btn.textContent = '✗ Something went wrong. Try again.';
+      btn.style.background = '#c0392b';
+      btn.disabled = false;
+    }
+
+  } catch (err) {
+    btn.textContent = '✗ Network error. Try again.';
+    btn.style.background = '#c0392b';
+    btn.disabled = false;
+  }
+}
+
+    // Smooth nav highlight — throttled with requestAnimationFrame
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav ul li a:not(.nav-cta)');
+    let scrollTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          let current = '';
+          sections.forEach(section => {
+            if (window.scrollY >= section.offsetTop - 200) {
+              current = section.getAttribute('id');
+            }
+          });
+          navLinks.forEach(link => {
+            link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--amber)' : '';
+          });
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    });
+  </script>
+</body>
+</html>
