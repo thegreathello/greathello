@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Great Hello Studio — Where Every Child Blossoms</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23FFD166'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%23FFD166'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -557,18 +557,14 @@
       line-height: 1;
     }
 
-    .author-avatar {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, var(--amber), var(--gold));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 8px 24px rgba(224,123,57,0.3);
-    }
+   .author-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(27,58,107,0.25);
+}
 
     .author-name {
       font-family: 'Fraunces', serif;
@@ -1169,7 +1165,9 @@
     <div class="about-grid">
       <div class="about-art reveal">
         <div class="author-block">
-          <div class="author-avatar">👁️</div>
+          <div class="author-avatar">
+  <img src="author.png" alt="Great Hello Studio logo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+</div>
           <div class="author-name">Ting Zhang, OD, FAAO</div>
           <div class="author-role">Author · Optometrist · First-time Publisher</div>
           <blockquote class="author-quote">
